@@ -86,6 +86,52 @@ namespace HashCodePractice2016
             return false;
         }
 
+        public bool Solves(PictureDescription desc)
+        {
+            for (int y = 0; y < desc.NumRows; ++y)
+            {
+                for (int x = 0; x < desc.NumCols; ++x)
+                {
+                    if (desc.IsFilled(x, y) != IsFilled(x, y))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        public bool Covers(PictureDescription desc)
+        {
+            for (int y = 0; y < desc.NumRows; ++y)
+            {
+                for (int x = 0; x < desc.NumCols; ++x)
+                {
+                    if (desc.IsFilled(x, y) && !IsFilled(x, y))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        public void AddClearCommands(PictureDescription desc)
+        {
+            for (int y = 0; y < desc.NumRows; ++y)
+            {
+                for (int x = 0; x < desc.NumCols; ++x)
+                {
+                    if (!desc.IsFilled(x, y) && IsFilled(x, y))
+                    {
+                        AddCommand(MakeClear(x, y));
+                    }
+                }
+            }
+        }
+
         public void WriteToFile(string path)
         {
             using (var stream = File.OpenWrite(path))
