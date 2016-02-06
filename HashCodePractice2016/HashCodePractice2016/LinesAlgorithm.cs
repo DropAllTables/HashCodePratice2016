@@ -35,10 +35,20 @@ namespace HashCodePractice2016
                                 length = 1;
                                 currentState = DrawState.FILL;
                             }
-                            
+                            if (column == pd.NumCols - 1)
+                            {
+                                solution.AddCommand(Solution.MakeHorizontalLine(from[0], from[1], length));
+                                currentState = DrawState.EMPTY;
+                                length = 0;
+                            }
                             break;
                         case DrawState.FILL:
-                            if (!pd.IsFilled(column, row) || column == pd.NumCols - 1)
+                            if (!pd.IsFilled(column, row))
+                            {
+                                solution.AddCommand(Solution.MakeHorizontalLine(from[0], from[1], length));
+                                currentState = DrawState.EMPTY;
+                                length = 0;
+                            }else if (column == pd.NumCols - 1)
                             {
                                 solution.AddCommand(Solution.MakeHorizontalLine(from[0], from[1], ++length));
                                 currentState = DrawState.EMPTY;

@@ -20,6 +20,8 @@ namespace HashCodePractice2016
             sol.WriteToFile("out.txt");
 
             var ponteSolution = LinesAlgorithm.solve(pic);
+            Console.WriteLine(Validator.Validate(ponteSolution, pic));
+            ponteSolution.WriteToFile("ponte.txt");
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
