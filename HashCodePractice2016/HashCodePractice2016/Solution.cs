@@ -186,7 +186,7 @@ namespace HashCodePractice2016
 
         public void WriteToFile(string path)
         {
-            using (var stream = File.OpenWrite(path))
+            using (var stream = File.Open(path, FileMode.Create))
             {
                 using (var writer = new StreamWriter(stream, Encoding.ASCII))
                 {
