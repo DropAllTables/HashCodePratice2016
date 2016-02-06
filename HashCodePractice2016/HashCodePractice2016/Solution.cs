@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -83,6 +84,39 @@ namespace HashCodePractice2016
             }
 
             return false;
+        }
+
+        public void WriteToFile(string path)
+        {
+            using (var stream = File.OpenWrite(path))
+            {
+                using (var writer = new StreamWriter(stream, Encoding.ASCII))
+                {
+                    writer.Write(commands.Count);
+                    writer.Write("\n");
+
+                    foreach (var command in commands)
+                    {
+                        switch (command.type)
+                        {
+                            case CommandType.Square:
+                                writer.Write($"PAINT_SQUARE {command.x} {command.y} {command.len / 2}");
+                                break;
+                            case CommandType.HorizontalLine:
+                                writer.Write($"PAINT_LINE {command.x} {command.y} {command.x + command.len - 1} {command.y}");
+                                break;
+                            case CommandType.VerticalLine:
+                                writer.Write($"PAINT_LINE {command.x} {command.y} {command.x} {command.y + command.len - 1}");
+                                break;
+                            case CommandType.Clear:
+                                writer.Write($"ERASE_CELL {command.x} {command.y}");
+                                break;
+                        }
+
+                        writer.Write("\n");
+                    }
+                }
+            }
         }
     }
 }
