@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HashCodePractice2016
 {
-    class Solution
+    public class Solution
     {
         public enum CommandType
         {
@@ -56,7 +56,32 @@ namespace HashCodePractice2016
 
         public bool IsFilled(int x, int y)
         {
-            // TODO
+            for (int i = commands.Count - 1; i >= 0; --i)
+            {
+                var command = commands[i];
+
+                switch (command.type)
+                {
+                    case CommandType.Clear:
+                        if (command.x == x && command.y == y) return false;
+                        break;
+                    case CommandType.HorizontalLine:
+                        if (command.x <= x && command.x + command.len > x && command.y == y) return true;
+                        break;
+                    case CommandType.VerticalLine:
+                        if (command.y <= y && command.y + command.len > y && command.x == x) return true;
+                        break;
+                    case CommandType.Square:
+                        int dist = command.len / 2; // truncate
+                        if (Math.Abs(command.x - x) <= dist && Math.Abs(command.y - y) <= dist)
+                        {
+                            return true;
+                        }
+
+                        break;
+                }
+            }
+
             return false;
         }
     }
