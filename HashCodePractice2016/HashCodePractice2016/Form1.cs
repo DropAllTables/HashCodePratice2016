@@ -12,8 +12,12 @@ namespace HashCodePractice2016
 {
     public partial class Form1 : Form
     {
-        public Form1()
+        private PictureDescription pic;
+
+        public Form1(PictureDescription pic)
         {
+            this.pic = pic;
+
             InitializeComponent();
         }
     }

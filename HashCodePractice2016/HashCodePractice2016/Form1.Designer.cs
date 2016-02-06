@@ -6,12 +6,6 @@
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-        private PictureDescription pic;
-
-        public Form1(PictureDescription pic)
-        {
-            this.pic = pic;
-        }
 
         /// <summary>
         /// Clean up any resources being used.
@@ -34,12 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.picturePrinter1 = new HashCodePractice2016.PicturePrinter();
+            this.SuspendLayout();
+            // 
+            // picturePrinter1
+            // 
+            this.picturePrinter1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picturePrinter1.Location = new System.Drawing.Point(0, 0);
+            this.picturePrinter1.Name = "picturePrinter1";
+            this.picturePrinter1.Size = new System.Drawing.Size(284, 261);
+            this.picturePrinter1.TabIndex = 0;
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.picturePrinter1);
+            this.Name = "Form1";
             this.Text = "Form1";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private PicturePrinter picturePrinter1;
     }
 }
 

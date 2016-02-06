@@ -15,6 +15,8 @@ namespace HashCodePractice2016
             {
                 string descLine = reader.ReadLine();
 
+
+
                 return new PictureDescription(1, 1);
             }
         }
