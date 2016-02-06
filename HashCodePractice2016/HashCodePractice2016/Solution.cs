@@ -7,44 +7,96 @@ using System.Threading.Tasks;
 
 namespace HashCodePractice2016
 {
+    public enum CommandType
+    {
+        HorizontalLine,
+        VerticalLine,
+        Square,
+        Clear
+    }
+
+    public struct Command
+    {
+        public CommandType type;
+        public int x, y;
+        public int len;
+    }
+
     public class Solution
     {
-        public enum CommandType
+        int nRows;
+        int nCols;
+        public Solution(PictureDescription desc)
         {
-            HorizontalLine,
-            VerticalLine,
-            Square,
-            Clear
+            nRows = desc.NumRows;
+            nCols = desc.NumCols;
         }
-
-        public struct Command
+        
+        public Command MakeClear(int x, int y)
         {
-            public CommandType type;
-            public int x, y;
-            public int len;
-        }
+            if (x < 0 || x >= nCols)
+            {
+                throw new ArgumentException(nameof(x));
+            }
+            if (y < 0 || y >= nRows)
+            {
+                throw new ArgumentException(nameof(y));
+            }
 
-        public static Command MakeClear(int x, int y)
-        {
             return new Command { type = CommandType.Clear, x = x, y = y };
         }
 
-        public static Command MakeHorizontalLine(int x, int y, int length)
+        public Command MakeHorizontalLine(int x, int y, int length)
         {
+            if (x < 0 || x >= nCols)
+            {
+                throw new ArgumentException(nameof(x));
+            }
+            if (y < 0 || y >= nRows)
+            {
+                throw new ArgumentException(nameof(y));
+            }
+            if (x + length > nCols)
+            {
+                throw new ArgumentException(nameof(length));
+            }
+
             return new Command { type = CommandType.HorizontalLine, x = x, y = y, len = length };
         }
 
-        public static Command MakeVerticalLine(int x, int y, int length)
+        public Command MakeVerticalLine(int x, int y, int length)
         {
+            if (x < 0 || x >= nCols)
+            {
+                throw new ArgumentException(nameof(x));
+            }
+            if (y < 0 || y >= nRows)
+            {
+                throw new ArgumentException(nameof(y));
+            }
+            if (y + length > nRows)
+            {
+                throw new ArgumentException(nameof(length));
+            }
+
             return new Command { type = CommandType.VerticalLine, x = x, y = y, len = length };
         }
 
-        public static Command MakeSquare(int centerX, int centerY, int sideLength)
+        public Command MakeSquare(int centerX, int centerY, int sideLength)
         {
             if (sideLength % 2 == 0)
             {
                 throw new ArgumentException(nameof(sideLength));
             }
+            if (centerX - sideLength / 2 < 0 || centerX + sideLength / 2 >= nCols)
+            {
+                throw new ArgumentException();
+            }
+            if (centerY - sideLength / 2 < 0 || centerY + sideLength / 2 >= nRows)
+            {
+                throw new ArgumentException();
+            }
+            
             return new Command { type = CommandType.Square, x = centerX, y = centerY, len = sideLength };
         }
 
