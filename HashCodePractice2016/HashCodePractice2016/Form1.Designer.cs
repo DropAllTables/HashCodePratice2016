@@ -6,6 +6,12 @@
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
+        private PictureDescription pic;
+
+        public Form1(PictureDescription pic)
+        {
+            this.pic = pic;
+        }
 
         /// <summary>
         /// Clean up any resources being used.

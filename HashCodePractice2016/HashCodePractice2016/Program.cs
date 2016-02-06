@@ -8,15 +8,14 @@ namespace HashCodePractice2016
 {
     static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
+            var pic = PictureReader.ReadFromFile("logo.in");
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Form1(pic));
         }
     }
 }
