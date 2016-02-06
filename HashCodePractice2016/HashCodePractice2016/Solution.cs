@@ -190,28 +190,27 @@ namespace HashCodePractice2016
             {
                 using (var writer = new StreamWriter(stream, Encoding.ASCII))
                 {
-                    writer.Write(commands.Count);
-                    writer.Write("\n");
+                    writer.WriteLine(commands.Count);
 
                     foreach (var command in commands)
                     {
                         switch (command.type)
                         {
                             case CommandType.Square:
-                                writer.Write($"PAINT_SQUARE {command.x} {command.y} {command.len / 2}");
+                                writer.Write($"PAINT_SQUARE {command.y} {command.x} {command.len / 2}");
                                 break;
                             case CommandType.HorizontalLine:
-                                writer.Write($"PAINT_LINE {command.x} {command.y} {command.x + command.len - 1} {command.y}");
+                                writer.Write($"PAINT_LINE {command.y} {command.x} {command.y} {command.x + command.len - 1}");
                                 break;
                             case CommandType.VerticalLine:
-                                writer.Write($"PAINT_LINE {command.x} {command.y} {command.x} {command.y + command.len - 1}");
+                                writer.Write($"PAINT_LINE {command.y} {command.x} {command.y + command.len - 1} {command.y}");
                                 break;
                             case CommandType.Clear:
-                                writer.Write($"ERASE_CELL {command.x} {command.y}");
+                                writer.Write($"ERASE_CELL {command.y} {command.x}");
                                 break;
                         }
 
-                        writer.Write("\n");
+                        writer.WriteLine();
                     }
                 }
             }
