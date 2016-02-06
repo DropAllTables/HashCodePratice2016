@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace HashCodePractice2016
 {
@@ -15,9 +16,34 @@ namespace HashCodePractice2016
             {
                 string descLine = reader.ReadLine();
 
+                var match = Regex.Match(descLine, "^([0-9]+) ([0-9]+)$");
+                int nRows = int.Parse(match.Groups[1].Value);
+                int nCols = int.Parse(match.Groups[2].Value);
 
+                var desc = new PictureDescription(nRows, nCols);
 
-                return new PictureDescription(1, 1);
+                for (int i = 0; i < nRows; ++i)
+                {
+                    var line = reader.ReadLine();
+
+                    for (int j = 0; j < nCols; ++j)
+                    {
+                        char ch = line[j];
+
+                        if (ch == '.')
+                        {
+                            // Do nothing
+                        } else if (ch == '#')
+                        {
+                            desc.Fill(j, i);
+                        } else
+                        {
+                            throw new NotImplementedException();
+                        }
+                    }
+                }
+
+                return desc;
             }
         }
     }

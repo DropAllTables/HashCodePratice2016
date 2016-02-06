@@ -25,5 +25,10 @@ namespace HashCodePractice2016
         {
             return data[y, x];
         }
+
+        public void Fill(int x, int y)
+        {
+            data[y, x] = true;
+        }
     }
 }
