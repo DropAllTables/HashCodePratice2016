@@ -13,6 +13,8 @@ namespace HashCodePractice2016
         {
             var pic = PictureReader.ReadFromFile("learn_and_teach.in");
 
+            var ponteSolution = LinesAlgorithm.solve(pic);
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1(pic));
