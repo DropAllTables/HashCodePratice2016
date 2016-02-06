@@ -12,6 +12,12 @@ namespace HashCodePractice2016
         static void Main()
         {
             var pic = PictureReader.ReadFromFile("learn_and_teach.in");
+            var sol = new Solution();
+            sol.AddCommand(Solution.MakeVerticalLine(3, 2, 4));
+            sol.AddCommand(Solution.MakeHorizontalLine(3, 2, 4));
+            sol.AddCommand(Solution.MakeSquare(4, 4, 3));
+            sol.AddCommand(Solution.MakeClear(2, 2));
+            sol.WriteToFile("out.txt");
 
             var ponteSolution = LinesAlgorithm.solve(pic);
 
