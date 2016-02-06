@@ -15,7 +15,7 @@ namespace HashCodePractice2016
         }
         public static Solution solve(PictureDescription pd)
         {
-            Solution solution = new Solution();
+            Solution solution = new Solution(pd);
             //PictureDescription auxPd = new PictureDescription(pd.NumRows, pd.NumCols);
             for (int row = 0; row < pd.NumRows; row++)
             {
@@ -34,25 +34,23 @@ namespace HashCodePractice2016
                                 from[1] = row;
                                 length = 1;
                                 currentState = DrawState.FILL;
+                                if (column == pd.NumCols - 1)
+                                {
+                                    solution.AddCommand(solution.MakeHorizontalLine(from[0], from[1], length));
+                                    currentState = DrawState.EMPTY;
+                                }
                             }
-                            if (column == pd.NumCols - 1)
-                            {
-                                solution.AddCommand(Solution.MakeHorizontalLine(from[0], from[1], length));
-                                currentState = DrawState.EMPTY;
-                                length = 0;
-                            }
+
                             break;
                         case DrawState.FILL:
                             if (!pd.IsFilled(column, row))
                             {
-                                solution.AddCommand(Solution.MakeHorizontalLine(from[0], from[1], length));
+                                solution.AddCommand(solution.MakeHorizontalLine(from[0], from[1], length));
                                 currentState = DrawState.EMPTY;
-                                length = 0;
                             }else if (column == pd.NumCols - 1)
                             {
-                                solution.AddCommand(Solution.MakeHorizontalLine(from[0], from[1], ++length));
+                                solution.AddCommand(solution.MakeHorizontalLine(from[0], from[1], ++length));
                                 currentState = DrawState.EMPTY;
-                                length = 0;
                             }
                             else
                             {
