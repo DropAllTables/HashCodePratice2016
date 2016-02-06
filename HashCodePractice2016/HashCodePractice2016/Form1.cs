@@ -12,13 +12,13 @@ namespace HashCodePractice2016
 {
     public partial class Form1 : Form
     {
-        private PictureDescription pic;
-
         public Form1(PictureDescription pic)
         {
-            this.pic = pic;
-
             InitializeComponent();
+
+            picturePrinter1.pic = pic;
+
+            picturePrinter1.Invalidate();
         }
     }
 }

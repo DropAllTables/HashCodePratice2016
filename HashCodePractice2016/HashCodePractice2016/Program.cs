@@ -11,7 +11,7 @@ namespace HashCodePractice2016
         [STAThread]
         static void Main()
         {
-            var pic = PictureReader.ReadFromFile("logo.in");
+            var pic = PictureReader.ReadFromFile("learn_and_teach.in");
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
